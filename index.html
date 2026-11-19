@@ -6,225 +6,507 @@
 <title>Stand Maker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
-html,body{width:100%;height:100%;background:#090710;color:#f8fafc;overflow:hidden}
-#app{display:flex;flex-direction:column;width:100%;height:100%;padding:10px;transform-origin:top left}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-shrink:0}
+html,body{
+  width:100%;height:100%;background:#090710;
+  color:#f8fafc;overflow:hidden
+}
+#app{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;padding:10px;
+  transform-origin:top left
+}
+.top{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:8px;
+  flex-shrink:0;gap:6px
+}
 h1{color:#facc15;font-size:18px;letter-spacing:2px}
-.z-bar{display:flex;align-items:center;gap:4px;background:#141024;padding:3px 6px;border-radius:4px;border:1px solid #3b2868}
-.z-bar span{font-size:11px;font-weight:bold;min-width:36px;text-align:center;color:#facc15}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
-@media(max-width:650px){.grid{grid-template-columns:1fr;overflow-y:auto}}
-.box{background:#141024;border:1px solid #3b2868;border-radius:8px;padding:12px;display:flex;flex-direction:column;overflow-y:auto}
-label{display:block;font-size:10px;color:#a78bfa;margin:6px 0 2px;text-transform:uppercase;font-weight:bold}
-input,textarea,select{width:100%;background:#090710;border:1px solid #4c3585;color:#fff;padding:6px;border-radius:4px;font-size:12px}
-.row{display:flex;gap:6px;align-items:center}
-.acts{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
-button{padding:5px 9px;border:none;border-radius:4px;font-weight:bold;cursor:pointer;font-size:11px;color:#fff;background:#3b2868}
-button.active{background:#ef4444}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:6px}
-.st{display:flex;justify-content:space-between;align-items:center;background:#090710;padding:4px 8px;border-radius:4px;border-left:3px solid #facc15;font-size:11px;font-weight:bold}
-.st select{width:46px;padding:2px;color:#facc15}
-.vis{display:flex;align-items:center;justify-content:space-evenly;gap:8px;margin:auto 0;padding:8px 0;flex-wrap:wrap}
-.img-wrap{width:38%;max-width:200px;aspect-ratio:3/4;border:1px dashed #4c3585;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#090710}
-.img-wrap img{width:100%;height:100%;object-fit:cover;display:none}
-.cv-wrap{width:55%;max-width:260px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.zb{
+  display:flex;align-items:center;gap:4px;
+  background:#141024;padding:3px 6px;
+  border-radius:4px;border:1px solid #3b2868
+}
+.zb span{
+  font-size:11px;font-weight:bold;
+  min-width:36px;text-align:center;color:#facc15
+}
+.g{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;flex:1;min-height:0
+}
+@media(max-width:650px){
+  .g{grid-template-columns:1fr;overflow-y:auto}
+}
+.bx{
+  background:#141024;border:1px solid #3b2868;
+  border-radius:8px;padding:12px;
+  display:flex;flex-direction:column;overflow-y:auto
+}
+label{
+  display:block;font-size:10px;color:#a78bfa;
+  margin:6px 0 2px;text-transform:uppercase;
+  font-weight:bold
+}
+input,textarea,select{
+  width:100%;background:#090710;
+  border:1px solid #4c3585;color:#fff;
+  padding:6px;border-radius:4px;font-size:12px
+}
+.r{display:flex;gap:6px;align-items:center}
+.ac{
+  display:flex;gap:4px;flex-wrap:wrap;
+  margin-bottom:6px
+}
+button{
+  padding:5px 9px;border:none;border-radius:4px;
+  font-weight:bold;cursor:pointer;font-size:11px;
+  color:#fff;background:#3b2868
+}
+button.on{background:#ef4444}
+.st{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5px;margin-top:6px
+}
+.si{
+  display:flex;justify-content:space-between;
+  align-items:center;background:#090710;
+  padding:4px 8px;border-radius:4px;
+  border-left:3px solid #facc15;
+  font-size:11px;font-weight:bold
+}
+.si select{width:46px;padding:2px;color:#facc15}
+.vs{
+  display:flex;align-items:center;
+  justify-content:space-evenly;gap:8px;
+  margin:auto 0;padding:8px 0;flex-wrap:wrap
+}
+.iw{
+  width:38%;max-width:200px;aspect-ratio:3/4;
+  border:1px dashed #4c3585;border-radius:6px;
+  display:flex;align-items:center;
+  justify-content:center;overflow:hidden;
+  background:#090710
+}
+.iw img{
+  width:100%;height:100%;
+  object-fit:cover;display:none
+}
+.cw{
+  width:55%;max-width:260px;aspect-ratio:1/1;
+  display:flex;align-items:center;justify-content:center
+}
 canvas{width:100%;height:100%}
-.ab{background:#090710;border-left:3px solid #ef4444;padding:8px;font-size:12px;min-height:55px;margin-top:auto}
+.ab{
+  background:#090710;border-left:3px solid #ef4444;
+  padding:8px;font-size:12px;min-height:55px;
+  margin-top:auto
+}
 </style>
 </head>
 <body>
 <div id="app">
   <div class="top">
     <h1>STAND MAKER</h1>
-    <div class="z-bar">
-      <button id="zOut">-</button>
-      <span id="zVal">100%</span>
-      <button id="zIn">+</button>
-      <button id="zReset" style="background:#1e1b4b;color:#a78bfa">100%</button>
+    <div class="r">
+      <button id="lg" style="background:#1e1b4b;
+        border:1px solid #facc15;color:#facc15">PT</button>
+      <div class="zb">
+        <button id="zo">-</button>
+        <span id="zv">100%</span>
+        <button id="zi">+</button>
+        <button id="zr" style="background:#1e1b4b;
+          color:#a78bfa">100%</button>
+      </div>
     </div>
   </div>
-  <div class="grid">
-    <div class="box">
-      <div class="row" style="justify-content:space-between">
-        <label style="margin:0">Atos (<span id="actCount">1</span>)</label>
-        <div class="row">
-          <button id="addAct" style="background:#16a34a">+ Ato</button>
-          <button id="delAct" style="background:#991b1b">X</button>
+  <div class="g">
+    <div class="bx">
+      <div class="r" style="justify-content:space-between">
+        <label style="margin:0">
+          <span id="la">Atos</span> (<span id="cn">1</span>)
+        </label>
+        <div class="r">
+          <button id="ad" style="background:#16a34a">+ Ato</button>
+          <button id="dl" style="background:#991b1b">X</button>
+          <button id="cl" style="background:#450a0a">Limpar</button>
         </div>
       </div>
-      <div class="acts" id="actBar" style="margin-top:5px"></div>
-
-      <div class="row">
-        <div style="flex:1"><label>Nome do Ato</label><input id="t"></div>
-        <div style="flex:1.5"><label>Nome do Stand</label><input id="n"></div>
-        <div style="flex:0.5"><label>Aura</label><input type="color" id="au" value="#ef4444" style="height:29px;padding:1px"></div>
+      <div class="ac" id="ab" style="margin-top:5px"></div>
+      <div class="r">
+        <div style="flex:1">
+          <label id="lt">Nome do Ato</label><input id="t">
+        </div>
+        <div style="flex:1.5">
+          <label id="ln">Nome do Stand</label><input id="n">
+        </div>
+        <div style="flex:0.5">
+          <label id="lu">Aura</label>
+          <input type="color" id="au" value="#ef4444"
+            style="height:29px;padding:1px">
+        </div>
       </div>
-      <label>Usuário</label><input id="u">
-      <div class="row">
-        <div style="flex:2"><label>Imagem</label><input type="file" id="imgIn" accept="image/*"></div>
-        <div style="flex:1"><label>Grito</label><input id="c"></div>
+      <label id="ls">Usuário</label><input id="u">
+      <div class="r">
+        <div style="flex:2">
+          <label id="li">Imagem</label>
+          <input type="file" id="ii" accept="image/*">
+        </div>
+        <div style="flex:1">
+          <label id="lc">Grito</label><input id="c">
+        </div>
       </div>
-      <label>Habilidade</label><textarea id="a" rows="2"></textarea>
+      <label id="lb">Habilidade</label>
+      <textarea id="a" rows="2"></textarea>
       <label>Stand Stats</label>
-      <div class="stats" id="sBox"></div>
-      <div class="row" style="margin-top:auto;padding-top:8px">
-        <button id="rnd" style="flex:1;background:#7e22ce">Sortear</button>
-        <button id="saveFile" style="flex:1;background:#16a34a">Salvar</button>
-        <button id="loadBtn" style="flex:1;background:#2563eb">Carregar</button>
-        <input type="file" id="loadFile" accept=".json" style="display:none">
+      <div class="st" id="sb"></div>
+      <div class="r" style="margin-top:auto;padding-top:8px">
+        <button id="rn" style="flex:1;background:#7e22ce">Sortear</button>
+        <button id="pn" style="flex:1;background:#d97706">PNG</button>
+        <button id="sv" style="flex:1;background:#16a34a">Salvar</button>
+        <button id="ld" style="flex:1;background:#2563eb">Carregar</button>
+        <input type="file" id="lf" accept=".json" style="display:none">
       </div>
     </div>
-
-    <div class="box">
+    <div class="bx">
       <div style="text-align:center">
         <small id="dt" style="font-weight:bold"></small>
         <h2 id="dn" style="color:#facc15;font-size:20px">「」</h2>
         <small id="du" style="color:#cbd5e1"></small>
       </div>
-      <div class="vis">
-        <div class="img-wrap" id="iBox">
-          <img id="prevImg">
-          <span id="noImg" style="font-size:10px;color:#64748b">Sem imagem</span>
+      <div class="vs">
+        <div class="iw" id="ib">
+          <img id="pi">
+          <span id="ni" style="font-size:10px;color:#64748b">
+            Sem imagem
+          </span>
         </div>
-        <div class="cv-wrap">
+        <div class="cw">
           <canvas id="cv" width="240" height="240"></canvas>
         </div>
       </div>
-      <div class="ab" id="abBox"><b id="dc" style="color:#facc15"></b><p id="da" style="margin-top:4px"></p></div>
+      <div class="ab" id="ax">
+        <b id="dc" style="color:#facc15"></b>
+        <p id="da" style="margin-top:4px"></p>
+      </div>
     </div>
   </div>
 </div>
 <script>
-const $ = id => document.getElementById(id);
-const keys = ['PODER','VELOCIDADE','ALCANCE','PERSISTÊNCIA','PRECISÃO','POTENCIAL'];
-const short = ['POD','VEL','ALC','PER','PRE','POT'];
-const map = {S:6,A:5,B:4,C:3,D:2,E:1,'?':0};
-const rks = ['?','S','A','B','C','D','E'];
-
-const newAct = i => ({t:`ACT ${i}`,n:'',c:'',a:'',au:'#ef4444',img:'',s:['?','?','?','?','?','?']});
-let acts = [newAct(1)], cur = 0, scale = 1;
-
-function setZoom(s) {
-  scale = Math.min(1.5, Math.max(0.3, +(s.toFixed(2))));
-  const app = $('app');
-  app.style.transform = `scale(${scale})`;
-  app.style.width = `${100 / scale}%`;
-  app.style.height = `${100 / scale}%`;
-  $('zVal').textContent = `${Math.round(scale * 100)}%`;
-}
-
-$('zOut').onclick = () => setZoom(scale - 0.1);
-$('zIn').onclick = () => setZoom(scale + 0.1);
-$('zReset').onclick = () => setZoom(1);
-
-keys.forEach((k,i) => {
-  $('sBox').innerHTML += `<div class="st"><span>${k}</span><select id="s${i}">${rks.map(r=>`<option>${r}</option>`).join('')}</select></div>`;
+const $ = i => document.getElementById(i);
+const tx = {
+  pt: {
+    a:'Atos', ad:'+ Ato', cl:'Limpar', t:'Nome do Ato',
+    n:'Nome do Stand', au:'Aura', u:'Usuário', up:'Usuário: ',
+    i:'Imagem', ni:'Sem imagem', c:'Grito', b:'Habilidade',
+    rn:'Sortear', sv:'Salvar', ld:'Carregar',
+    k:['PODER','VELOCIDADE','ALCANCE','PERSISTÊNCIA','PRECISÃO','POTENCIAL'],
+    s:['POD','VEL','ALC','PER','PRE','POT']
+  },
+  en: {
+    a:'Acts', ad:'+ Act', cl:'Reset', t:'Act Name',
+    n:'Stand Name', au:'Aura', u:'Stand User', up:'User: ',
+    i:'Image', ni:'No image', c:'Battle Cry', b:'Ability',
+    rn:'Random', sv:'Save', ld:'Load',
+    k:['POWER','SPEED','RANGE','STAMINA','PRECISION','POTENTIAL'],
+    s:['PWR','SPD','RNG','STA','PRC','POT']
+  }
+};
+const mp = {S:6,A:5,B:4,C:3,D:2,E:1,'?':0};
+const rk = ['?','S','A','B','C','D','E'];
+const db = 'sm_v2';
+const mk = i => ({
+  t:`ACT ${i}`, n:'', c:'', a:'',
+  au:'#ef4444', img:'', s:['?','?','?','?','?','?']
 });
+let l = 'pt', ac = [mk(1)], c = 0, z = 1;
 
-function loadAct(i) {
-  cur = i;
-  $('actCount').textContent = acts.length;
-  $('actBar').innerHTML = acts.map((act,idx) =>
-    `<button class="${idx===cur?'active':''}" onclick="loadAct(${idx})">${(act.t||`ACT ${idx+1}`).toUpperCase()}</button>`
+function zm(v) {
+  z = Math.min(1.5, Math.max(0.3, +(v.toFixed(2))));
+  const e = $('app');
+  e.style.transform = `scale(${z})`;
+  e.style.width = `${100/z}%`;
+  e.style.height = `${100/z}%`;
+  $('zv').textContent = `${Math.round(z*100)}%`;
+}
+$('zo').onclick = () => zm(z-0.1);
+$('zi').onclick = () => zm(z+0.1);
+$('zr').onclick = () => zm(1);
+
+function ui() {
+  const L = tx[l];
+  $('lg').textContent = l.toUpperCase();
+  $('la').textContent = L.a;
+  $('ad').textContent = L.ad;
+  $('cl').textContent = L.cl;
+  $('lt').textContent = L.t;
+  $('ln').textContent = L.n;
+  $('lu').textContent = L.au;
+  $('ls').textContent = L.u;
+  $('li').textContent = L.i;
+  $('ni').textContent = L.ni;
+  $('lc').textContent = L.c;
+  $('lb').textContent = L.b;
+  $('rn').textContent = L.rn;
+  $('sv').textContent = L.sv;
+  $('ld').textContent = L.ld;
+  const opts = rk.map(r => `<option>${r}</option>`).join('');
+  $('sb').innerHTML = L.k.map((k,i) =>
+    `<div class="si"><span>${k}</span>` +
+    `<select id="s${i}">${opts}</select></div>`
   ).join('');
-  const d = acts[cur];
-  $('t').value = d.t; $('n').value = d.n; $('c').value = d.c; $('a').value = d.a; $('au').value = d.au;
-  $('imgIn').value = '';
-  d.s.forEach((v,idx) => $('s'+idx).value = v);
-  render();
+  L.k.forEach((_,i) => $('s'+i).onchange = sa);
+  ac[c].s.forEach((v,i) => $('s'+i).value = v);
+  rn();
 }
 
-function saveAct() {
-  const d = acts[cur];
-  d.t = $('t').value; d.n = $('n').value; d.c = $('c').value; d.a = $('a').value; d.au = $('au').value;
-  d.s = keys.map((_,i) => $('s'+i).value);
-  $('actBar').children[cur].textContent = (d.t||`ACT ${cur+1}`).toUpperCase();
-  render();
+function ps() {
+  try {
+    const data = JSON.stringify({l, u:$('u').value, ac, c});
+    localStorage.setItem(db, data);
+  } catch(e) {}
 }
 
-function render() {
-  const d = acts[cur], tag = (d.t||`ACT ${cur+1}`).toUpperCase();
-  $('dt').textContent = tag; $('dt').style.color = d.au;
-  $('dn').textContent = d.n ? `「${d.n.toUpperCase()}」` : `「${tag}」`;
-  $('du').textContent = $('u').value ? `Usuário: ${$('u').value}` : '';
+function la(i) {
+  c = i;
+  $('cn').textContent = ac.length;
+  $('ab').innerHTML = ac.map((x,j) => {
+    const nm = (x.t||`ACT ${j+1}`).toUpperCase();
+    const cls = j===c ? 'on' : '';
+    return `<button class="${cls}" onclick="la(${j})">${nm}</button>`;
+  }).join('');
+  const d = ac[c];
+  $('t').value = d.t;
+  $('n').value = d.n;
+  $('c').value = d.c;
+  $('a').value = d.a;
+  $('au').value = d.au;
+  $('ii').value = '';
+  d.s.forEach((v,j) => $('s'+j).value = v);
+  ps();
+  rn();
+}
+
+function sa() {
+  const d = ac[c];
+  d.t = $('t').value;
+  d.n = $('n').value;
+  d.c = $('c').value;
+  d.a = $('a').value;
+  d.au = $('au').value;
+  d.s = tx[l].k.map((_,i) => $('s'+i).value);
+  const nm = (d.t||`ACT ${c+1}`).toUpperCase();
+  $('ab').children[c].textContent = nm;
+  ps();
+  rn();
+}
+
+function dr(x, cx, cy, mr, d) {
+  for(let v=1; v<=6; v++) {
+    x.beginPath();
+    for(let i=0; i<6; i++) {
+      let a = i*Math.PI/3 - Math.PI/2;
+      let r = (mr/6)*v;
+      let px = cx + r*Math.cos(a);
+      let py = cy + r*Math.sin(a);
+      i ? x.lineTo(px, py) : x.moveTo(px, py);
+    }
+    x.closePath();
+    x.strokeStyle = v==6 ? '#facc15' : 'rgba(255,255,255,0.2)';
+    x.lineWidth = 1;
+    x.stroke();
+  }
+  x.beginPath();
+  d.s.forEach((k,i) => {
+    let a = i*Math.PI/3 - Math.PI/2;
+    let r = (mr/6)*(mp[k]||0);
+    let px = cx + r*Math.cos(a);
+    let py = cy + r*Math.sin(a);
+    i ? x.lineTo(px, py) : x.moveTo(px, py);
+  });
+  x.closePath();
+  x.fillStyle = d.au + '66';
+  x.fill();
+  x.strokeStyle = d.au;
+  x.lineWidth = 2.5;
+  x.stroke();
+  x.textAlign = 'center';
+  tx[l].s.forEach((k,i) => {
+    let a = i*Math.PI/3 - Math.PI/2;
+    let lx = cx + (mr+20)*Math.cos(a);
+    let ly = cy + (mr+20)*Math.sin(a);
+    x.fillStyle = '#cbd5e1';
+    x.font = 'bold 10px sans-serif';
+    x.fillText(k, lx, ly-5);
+    x.fillStyle = d.s[i]=='S' ? '#ef4444' : '#facc15';
+    x.font = '900 13px sans-serif';
+    x.fillText(d.s[i], lx, ly+10);
+  });
+}
+
+function rn() {
+  const L = tx[l];
+  const d = ac[c];
+  const tg = (d.t||`ACT ${c+1}`).toUpperCase();
+  $('dt').textContent = tg;
+  $('dt').style.color = d.au;
+  $('dn').textContent = d.n ? `「${d.n.toUpperCase()}」` : `「${tg}」`;
+  $('du').textContent = $('u').value ? `${L.up}${$('u').value}` : '';
   $('dc').textContent = d.c.toUpperCase();
   $('da').textContent = d.a;
-  $('abBox').style.borderColor = d.au;
-
-  $('prevImg').style.display = d.img ? 'block' : 'none';
-  $('noImg').style.display = d.img ? 'none' : 'block';
-  if(d.img) $('prevImg').src = d.img;
-  $('iBox').style.borderColor = d.img ? d.au : '#4c3585';
-
-  const ctx = $('cv').getContext('2d'), cx = 120, cy = 120, maxR = 80;
-  ctx.clearRect(0,0,240,240);
-
-  for(let l=1; l<=6; l++) {
-    ctx.beginPath();
-    for(let i=0; i<6; i++) {
-      let a = i*Math.PI/3 - Math.PI/2, r = (maxR/6)*l;
-      i ? ctx.lineTo(cx+r*Math.cos(a), cy+r*Math.sin(a)) : ctx.moveTo(cx+r*Math.cos(a), cy+r*Math.sin(a));
-    }
-    ctx.closePath();
-    ctx.strokeStyle = l==6 ? '#facc15' : 'rgba(255,255,255,0.2)';
-    ctx.stroke();
-  }
-
-  ctx.beginPath();
-  d.s.forEach((rk,i) => {
-    let a = i*Math.PI/3 - Math.PI/2, r = (maxR/6)*(map[rk]||0);
-    i ? ctx.lineTo(cx+r*Math.cos(a), cy+r*Math.sin(a)) : ctx.moveTo(cx+r*Math.cos(a), cy+r*Math.sin(a));
-  });
-  ctx.closePath(); ctx.fillStyle = d.au+'66'; ctx.fill(); ctx.strokeStyle = d.au; ctx.lineWidth = 2.5; ctx.stroke();
-
-  ctx.textAlign = 'center';
-  short.forEach((k,i) => {
-    let a = i*Math.PI/3 - Math.PI/2, lx = cx+100*Math.cos(a), ly = cy+100*Math.sin(a);
-    ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 10px sans-serif'; ctx.fillText(k, lx, ly-5);
-    ctx.fillStyle = d.s[i]=='S' ? '#ef4444' : '#facc15'; ctx.font = '900 13px sans-serif'; ctx.fillText(d.s[i], lx, ly+10);
-  });
+  $('ax').style.borderColor = d.au;
+  $('pi').style.display = d.img ? 'block' : 'none';
+  $('ni').style.display = d.img ? 'none' : 'block';
+  if(d.img) $('pi').src = d.img;
+  $('ib').style.borderColor = d.img ? d.au : '#4c3585';
+  $('ib').style.boxShadow = d.img ? `0 0 15px ${d.au}66` : 'none';
+  const x = $('cv').getContext('2d');
+  x.clearRect(0,0,240,240);
+  dr(x, 120, 120, 80, d);
 }
 
-$('addAct').onclick = () => { acts.push(newAct(acts.length+1)); loadAct(acts.length-1); };
-$('delAct').onclick = () => { if(acts.length>1){ acts.splice(cur,1); loadAct(Math.max(0,cur-1)); } };
-
-['t','n','u','c','a','au'].forEach(id => $(id).oninput = saveAct);
-keys.forEach((_,i) => $('s'+i).onchange = saveAct);
-
-$('imgIn').onchange = e => {
-  const f = e.target.files[0];
-  if(!f) return;
-  const r = new FileReader();
-  r.onload = ev => { acts[cur].img = ev.target.result; render(); };
-  r.readAsDataURL(f);
-};
-
-$('rnd').onclick = () => {
-  const pool = ['S','A','B','C','D','E'];
-  keys.forEach((_,i) => $('s'+i).value = pool[Math.floor(Math.random()*6)]);
-  saveAct();
-};
-
-$('saveFile').onclick = () => {
+$('pn').onclick = () => {
+  const d = ac[c];
+  const L = tx[l];
+  const tg = (d.t||`ACT ${c+1}`).toUpperCase();
+  const cv = document.createElement('canvas');
+  cv.width = 640;
+  cv.height = 460;
+  const x = cv.getContext('2d');
+  x.fillStyle = '#090710';
+  x.fillRect(0,0,640,460);
+  x.strokeStyle = d.au;
+  x.lineWidth = 4;
+  x.strokeRect(8,8,624,444);
+  x.textAlign = 'center';
+  x.fillStyle = d.au;
+  x.font = 'bold 14px sans-serif';
+  x.fillText(tg, 320, 38);
+  x.fillStyle = '#facc15';
+  x.font = '900 26px sans-serif';
+  x.fillText(d.n ? `「${d.n.toUpperCase()}」` : `「${tg}」`, 320, 68);
+  x.fillStyle = '#cbd5e1';
+  x.font = '14px sans-serif';
+  if($('u').value) x.fillText(`${L.up}${$('u').value}`, 320, 90);
+  x.strokeStyle = '#3b2868';
+  x.lineWidth = 2;
+  x.strokeRect(40,115,180,220);
+  if(d.img) {
+    x.drawImage($('pi'), 40, 115, 180, 220);
+  } else {
+    x.fillStyle = '#64748b';
+    x.font = '12px sans-serif';
+    x.fillText(L.ni, 130, 225);
+  }
+  dr(x, 440, 225, 82, d);
+  x.fillStyle = '#141024';
+  x.fillRect(40,355,560,80);
+  x.fillStyle = d.au;
+  x.fillRect(40,355,5,80);
+  x.textAlign = 'left';
+  x.fillStyle = '#facc15';
+  x.font = 'bold 14px sans-serif';
+  x.fillText(d.c.toUpperCase(), 55, 378);
+  x.fillStyle = '#f8fafc';
+  x.font = '13px sans-serif';
+  let ln = '', y = 400;
+  d.a.split(' ').forEach(w => {
+    if(x.measureText(ln+w).width > 530) {
+      x.fillText(ln, 55, y);
+      ln = w + ' ';
+      y += 18;
+    } else {
+      ln += w + ' ';
+    }
+  });
+  x.fillText(ln, 55, y);
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify({user:$('u').value,acts})],{type:'application/json'}));
-  a.download = `${(acts[0].n||'stand').toLowerCase().replace(/\s+/g,'-')}.json`;
+  a.href = cv.toDataURL('image/png');
+  a.download = `${(d.n||tg).toLowerCase().replace(/\s+/g,'-')}.png`;
   a.click();
 };
 
-$('loadBtn').onclick = () => $('loadFile').click();
-$('loadFile').onchange = e => {
+$('lg').onclick = () => {
+  l = l==='pt' ? 'en' : 'pt';
+  ps();
+  ui();
+};
+$('ad').onclick = () => {
+  ac.push(mk(ac.length+1));
+  la(ac.length-1);
+};
+$('dl').onclick = () => {
+  if(ac.length>1) {
+    ac.splice(c,1);
+    la(Math.max(0,c-1));
+  }
+};
+$('cl').onclick = () => {
+  localStorage.removeItem(db);
+  $('u').value = '';
+  ac = [mk(1)];
+  la(0);
+};
+['t','n','u','c','a','au'].forEach(i => $(i).oninput = sa);
+
+$('ii').onchange = e => {
   const f = e.target.files[0];
   if(!f) return;
   const r = new FileReader();
-  r.onload = ev => {
-    const p = JSON.parse(ev.target.result);
-    if(p.acts?.length){ $('u').value = p.user||''; acts = p.acts; loadAct(0); }
+  r.onload = v => {
+    ac[c].img = v.target.result;
+    ps();
+    rn();
+  };
+  r.readAsDataURL(f);
+};
+
+$('rn').onclick = () => {
+  const p = ['S','A','B','C','D','E'];
+  tx[l].k.forEach((_,i) => {
+    $('s'+i).value = p[Math.floor(Math.random()*6)];
+  });
+  sa();
+};
+
+$('sv').onclick = () => {
+  const blob = new Blob(
+    [JSON.stringify({u:$('u').value, ac})],
+    {type:'application/json'}
+  );
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const fn = (ac[0].n||'stand').toLowerCase().replace(/\s+/g,'-');
+  a.download = `${fn}.json`;
+  a.click();
+};
+
+$('ld').onclick = () => $('lf').click();
+$('lf').onchange = e => {
+  const f = e.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = v => {
+    const p = JSON.parse(v.target.result);
+    if(p.ac?.length) {
+      $('u').value = p.u || '';
+      ac = p.ac;
+      la(0);
+    }
   };
   r.readAsText(f);
 };
 
-loadAct(0);
+try {
+  const p = JSON.parse(localStorage.getItem(db));
+  if(p) {
+    if(p.l) l = p.l;
+    if(p.u) $('u').value = p.u;
+    if(p.ac?.length) ac = p.ac;
+    c = Math.min(p.c||0, ac.length-1);
+  }
+} catch(e) {}
+ui();
+la(c);
 </script>
 </body>
 </html>
