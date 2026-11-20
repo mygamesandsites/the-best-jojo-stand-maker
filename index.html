@@ -9,7 +9,10 @@
   --bg:#090710;--pn:#141024;--c1:#facc15;
   --c2:#a78bfa;--tx:#f8fafc;--bd:#3b2868
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
+*{
+  box-sizing:border-box;margin:0;padding:0;
+  font-family:sans-serif;scrollbar-color:var(--bd) var(--bg)
+}
 html,body{
   width:100%;height:100%;background:var(--bg);
   color:var(--tx);overflow:hidden
@@ -34,7 +37,10 @@ h1{
   border-radius:4px;border:1px solid var(--bd)
 }
 .th-bar{margin-bottom:6px;justify-content:space-around;flex-wrap:wrap}
-.th-it{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:bold;color:var(--c2)}
+.th-it{
+  display:flex;align-items:center;gap:3px;
+  font-size:10px;font-weight:bold;color:var(--c2)
+}
 .th-it input{width:24px;height:20px;padding:0;border:none;cursor:pointer}
 .zb span{
   font-size:11px;font-weight:bold;
@@ -65,11 +71,11 @@ input,textarea,select{
 .r{display:flex;gap:6px;align-items:center}
 .ac{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
 button{
-  padding:5px 8px;border:none;border-radius:4px;
+  padding:5px 8px;border:1px solid transparent;border-radius:4px;
   font-weight:bold;cursor:pointer;font-size:11px;
-  color:#fff;background:var(--bd)
+  color:var(--tx);background:var(--bd)
 }
-button.on{background:#ef4444}
+button.on{background:#ef4444;color:#fff;border-color:var(--c1)}
 .st{
   display:grid;grid-template-columns:1fr 1fr;
   gap:5px;margin-top:4px
@@ -79,7 +85,7 @@ button.on{background:#ef4444}
   align-items:center;background:var(--bg);
   padding:4px 8px;border-radius:4px;
   border-left:3px solid var(--c1);
-  font-size:11px;font-weight:bold
+  font-size:11px;font-weight:bold;color:var(--tx)
 }
 .si select{width:46px;padding:2px;color:var(--c1)}
 .vs{
@@ -103,7 +109,7 @@ canvas{width:100%;height:100%}
 .ab{
   background:var(--bg);border-left:3px solid #ef4444;
   padding:8px;font-size:12px;min-height:50px;
-  margin-top:auto
+  margin-top:auto;word-break:break-word;color:var(--tx)
 }
 .sb-box{
   margin-top:6px;padding-top:6px;
@@ -117,13 +123,13 @@ canvas{width:100%;height:100%}
     <h1 id="logo">STAND MAKER</h1>
     <div class="r">
       <label id="wmWrap" style="display:none;margin:0;
-        font-size:9px;color:#64748b;cursor:pointer">
+        font-size:9px;color:var(--c2);cursor:pointer">
         <input type="checkbox" id="wm" checked
           style="width:auto;vertical-align:middle"> WM
       </label>
-      <button id="thBtn" style="border:1px solid var(--c1);
+      <button id="thBtn" style="border-color:var(--c1);
         color:var(--c1)">🎨</button>
-      <button id="lg" style="border:1px solid var(--c1);
+      <button id="lg" style="border-color:var(--c1);
         color:var(--c1)">PT</button>
       <div class="zb">
         <button id="zo">-</button>
@@ -140,7 +146,7 @@ canvas{width:100%;height:100%}
     <div class="th-it"><span id="ltC2">Secundária</span><input type="color" id="thC2"></div>
     <div class="th-it"><span id="ltTx">Texto</span><input type="color" id="thTx"></div>
     <div class="th-it"><span id="ltBd">Borda</span><input type="color" id="thBd"></div>
-    <button id="thRst" style="background:#991b1b;font-size:10px;padding:3px 6px">Reset</button>
+    <button id="thRst" style="background:#991b1b;color:#fff;font-size:10px;padding:3px 6px">Reset</button>
   </div>
   <div class="g">
     <div class="bx">
@@ -149,9 +155,9 @@ canvas{width:100%;height:100%}
           <span id="la">Atos</span> (<span id="cn">1</span>)
         </label>
         <div class="r">
-          <button id="ad" style="background:#16a34a">+ Ato</button>
-          <button id="dl" style="background:#991b1b">X</button>
-          <button id="cl" style="background:#450a0a">Limpar</button>
+          <button id="ad" style="background:#16a34a;color:#fff">+ Ato</button>
+          <button id="dl" style="background:#991b1b;color:#fff">X</button>
+          <button id="cl" style="background:#450a0a;color:#fff">Limpar</button>
         </div>
       </div>
       <div class="ac" id="ab" style="margin-top:5px"></div>
@@ -186,12 +192,12 @@ canvas{width:100%;height:100%}
       <label>Stand Stats</label>
       <div class="st" id="sb"></div>
       <div class="r" style="margin-top:auto;padding-top:8px;flex-wrap:wrap">
-        <button id="rn" style="flex:1;background:#7e22ce">Sortear</button>
-        <button id="pn" style="flex:1;background:#d97706">PNG</button>
-        <button id="pna" style="flex:1;background:#b45309">PNG Todos</button>
-        <button id="lk" style="flex:1;background:#0d9488">Link</button>
-        <button id="sv" style="flex:1;background:#16a34a">Salvar</button>
-        <button id="ld" style="flex:1;background:#2563eb">Carregar</button>
+        <button id="rn" style="flex:1;background:#7e22ce;color:#fff">Sortear</button>
+        <button id="pn" style="flex:1;background:#d97706;color:#fff">PNG</button>
+        <button id="pna" style="flex:1;background:#b45309;color:#fff">PNG Todos</button>
+        <button id="lk" style="flex:1;background:#0d9488;color:#fff">Link</button>
+        <button id="sv" style="flex:1;background:#16a34a;color:#fff">Salvar</button>
+        <button id="ld" style="flex:1;background:#2563eb;color:#fff">Carregar</button>
         <input type="file" id="lf" accept=".json" style="display:none">
       </div>
     </div>
@@ -199,12 +205,12 @@ canvas{width:100%;height:100%}
       <div style="text-align:center">
         <small id="dt" style="font-weight:bold"></small>
         <h2 id="dn" style="color:var(--c1);font-size:20px">「」</h2>
-        <small id="du" style="opacity:0.8"></small>
+        <small id="du" style="color:var(--tx);opacity:0.8"></small>
       </div>
       <div class="vs">
         <div class="iw" id="ib">
           <img id="pi">
-          <span id="ni" style="font-size:10px;opacity:0.6">Sem imagem</span>
+          <span id="ni" style="font-size:10px;color:var(--tx);opacity:0.6">Sem imagem</span>
         </div>
         <div class="cw">
           <canvas id="cv" width="240" height="240"></canvas>
@@ -230,7 +236,7 @@ const tx = {
     i:'Imagem', ni:'Sem imagem', c:'Grito', b:'Habilidade',
     sub:'Sub-Stand', sb:'Habilidade Sub-Stand',
     rn:'Sortear', pna:'PNG Todos', lk:'Link', lkc:'Copiado!',
-    sv:'Salvar', ld:'Carregar',
+    sv:'Salvar', ld:'Carregar', err:'Arquivo inválido!',
     bg:'Fundo', pn:'Painel', c1:'Destaque', c2:'Secundária',
     tx:'Texto', bd:'Borda',
     k:['PODER','VELOCIDADE','ALCANCE','PERSISTÊNCIA','PRECISÃO','POTENCIAL'],
@@ -242,7 +248,7 @@ const tx = {
     i:'Image', ni:'No image', c:'Battle Cry', b:'Ability',
     sub:'Sub-Stand', sb:'Sub-Stand Ability',
     rn:'Random', pna:'PNG All', lk:'Link', lkc:'Copied!',
-    sv:'Save', ld:'Load',
+    sv:'Save', ld:'Load', err:'Invalid file!',
     bg:'Bg', pn:'Panel', c1:'Accent', c2:'Secondary',
     tx:'Text', bd:'Border',
     k:['POWER','SPEED','RANGE','STAMINA','PRECISION','POTENTIAL'],
@@ -262,6 +268,33 @@ const mk = i => ({
 });
 let l = 'pt', ac = [mk(1)], c = 0, z = 1, taps = 0;
 let th = {...defTh};
+
+function sanAct(x, i) {
+  if(!x || typeof x !== 'object') return mk(i+1);
+  const st = Array.isArray(x.s) ? x.s.slice(0,6) : [];
+  while(st.length < 6) st.push('?');
+  return {
+    t: String(x.t ?? `ACT ${i+1}`).slice(0,30),
+    n: String(x.n ?? '').slice(0,60),
+    c: String(x.c ?? '').slice(0,60),
+    a: String(x.a ?? '').slice(0,800),
+    sn: String(x.sn ?? '').slice(0,60),
+    sa: String(x.sa ?? '').slice(0,500),
+    au: /^#[0-9a-f]{6}$/i.test(x.au) ? x.au : '#ef4444',
+    img: typeof x.img === 'string' && x.img.startsWith('data:image/') ? x.img : '',
+    s: st.map(v => rk.includes(v) ? v : '?')
+  };
+}
+
+function sanTh(t) {
+  const res = {...defTh};
+  if(t && typeof t === 'object') {
+    Object.keys(defTh).forEach(k => {
+      if(/^#[0-9a-f]{6}$/i.test(t[k])) res[k] = t[k];
+    });
+  }
+  return res;
+}
 
 function applyTh() {
   const r = document.documentElement.style;
@@ -322,12 +355,24 @@ function ui() {
   $('ltBg').textContent = L.bg; $('ltPn').textContent = L.pn;
   $('ltC1').textContent = L.c1; $('ltC2').textContent = L.c2;
   $('ltTx').textContent = L.tx; $('ltBd').textContent = L.bd;
-  const opts = rk.map(r => `<option>${r}</option>`).join('');
-  $('sb').innerHTML = L.k.map((k,i) =>
-    `<div class="si"><span>${k}</span>` +
-    `<select id="s${i}">${opts}</select></div>`
-  ).join('');
-  L.k.forEach((_,i) => $('s'+i).onchange = sa);
+  const sb = $('sb');
+  sb.replaceChildren();
+  L.k.forEach((k,i) => {
+    const div = document.createElement('div');
+    div.className = 'si';
+    const sp = document.createElement('span');
+    sp.textContent = k;
+    const sel = document.createElement('select');
+    sel.id = 's'+i;
+    rk.forEach(r => {
+      const op = document.createElement('option');
+      op.value = r; op.textContent = r;
+      sel.appendChild(op);
+    });
+    sel.onchange = sa;
+    div.append(sp, sel);
+    sb.appendChild(div);
+  });
   ac[c].s.forEach((v,i) => $('s'+i).value = v);
   rn();
 }
@@ -342,11 +387,15 @@ function ps() {
 function la(i) {
   c = i;
   $('cn').textContent = ac.length;
-  $('ab').innerHTML = ac.map((x,j) => {
-    const nm = (x.t||`ACT ${j+1}`).toUpperCase();
-    const cls = j===c ? 'on' : '';
-    return `<button class="${cls}" onclick="la(${j})">${nm}</button>`;
-  }).join('');
+  const ab = $('ab');
+  ab.replaceChildren();
+  ac.forEach((x,j) => {
+    const btn = document.createElement('button');
+    if(j===c) btn.className = 'on';
+    btn.textContent = (x.t||`ACT ${j+1}`).toUpperCase();
+    btn.onclick = () => la(j);
+    ab.appendChild(btn);
+  });
   const d = ac[c];
   $('t').value = d.t; $('n').value = d.n;
   $('c').value = d.c; $('a').value = d.a;
@@ -366,6 +415,28 @@ function sa() {
   $('ab').children[c].textContent = (d.t||`ACT ${c+1}`).toUpperCase();
   ps(); rn();
 }
+function wrapLines(x, txt, maxW) {
+  const out = [];
+  String(txt || '').split('\n').forEach(p => {
+    let ln = '';
+    p.split(' ').forEach(w => {
+      if(!w) return;
+      if(x.measureText(ln + w).width > maxW) {
+        if(ln) out.push(ln.trim());
+        while(x.measureText(w).width > maxW) {
+          let k = w.length;
+          while(k > 1 && x.measureText(w.slice(0,k)).width > maxW) k--;
+          out.push(w.slice(0,k));
+          w = w.slice(k);
+        }
+        ln = w + ' ';
+      } else ln += w + ' ';
+    });
+    if(ln.trim()) out.push(ln.trim());
+  });
+  return out;
+}
+
 function dr(x, cx, cy, mr, d) {
   x.save();
   x.beginPath();
@@ -374,7 +445,7 @@ function dr(x, cx, cy, mr, d) {
   x.lineWidth = 2; x.stroke();
   x.beginPath();
   x.arc(cx, cy, mr + 10, 0, Math.PI * 2);
-  x.setLineDash([5, 4]);
+  x.setLineDash([4, 4]);
   x.strokeStyle = d.au;
   x.lineWidth = 1.5; x.stroke();
   x.setLineDash([]);
@@ -440,9 +511,19 @@ function rn() {
   dr(x, 120, 120, 74, d);
 }
 
-function drawCard(x, oy, d, idx, im) {
+function calcCard(x, d) {
+  x.font = '13px sans-serif';
+  const abL = wrapLines(x, d.a, 530);
+  x.font = '12px sans-serif';
+  const subL = (d.sn || d.sa) ? wrapLines(x, d.sa, 530) : [];
+  const hasSub = !!(d.sn || d.sa);
+  const bh = Math.max(70, 34 + abL.length * 17 + (hasSub ? 28 + subL.length * 16 : 0));
+  return { abL, subL, hasSub, bh, h: 375 + bh };
+}
+
+function drawCard(x, oy, d, idx, im, info) {
   const L = tx[l], tg = (d.t||`ACT ${idx+1}`).toUpperCase();
-  const hasSub = !!(d.sn || d.sa), h = hasSub ? 510 : 460;
+  const { abL, subL, hasSub, bh, h } = info;
   x.fillStyle = th.bg; x.fillRect(0, oy, 640, h);
   x.strokeStyle = d.au; x.lineWidth = 4; x.strokeRect(8, oy+8, 624, h-16);
   x.textAlign = 'center';
@@ -455,22 +536,18 @@ function drawCard(x, oy, d, idx, im) {
   if(im) x.drawImage(im, 40, oy+115, 180, 220);
   else { x.fillStyle = th.tx+'88'; x.font = '12px sans-serif'; x.fillText(L.ni, 130, oy+225); }
   dr(x, 440, oy+225, 76, d);
-  const bh = hasSub ? 125 : 80;
   x.fillStyle = th.pn; x.fillRect(40, oy+355, 560, bh);
   x.fillStyle = d.au; x.fillRect(40, oy+355, 5, bh);
   x.textAlign = 'left';
-  x.fillStyle = th.c1; x.font = 'bold 14px sans-serif'; x.fillText(d.c.toUpperCase(), 55, oy+378);
+  x.fillStyle = th.c1; x.font = 'bold 14px sans-serif'; x.fillText(d.c.toUpperCase(), 55, oy+376);
   x.fillStyle = th.tx; x.font = '13px sans-serif';
-  let ln = '', y = oy+398;
-  d.a.split(' ').forEach(w => {
-    if(x.measureText(ln+w).width > 530) { x.fillText(ln, 55, y); ln = w+' '; y += 17; }
-    else ln += w+' ';
-  });
-  x.fillText(ln, 55, y);
+  let y = oy + 396;
+  abL.forEach(ln => { x.fillText(ln, 55, y); y += 17; });
   if(hasSub) {
-    y += 22; x.fillStyle = th.c2; x.font = 'bold 12px sans-serif';
+    y += 8; x.fillStyle = th.c2; x.font = 'bold 12px sans-serif';
     x.fillText(d.sn ? `SUB-STAND: 「${d.sn.toUpperCase()}」` : 'SUB-STAND', 55, y);
-    y += 16; x.fillStyle = th.tx; x.font = '12px sans-serif'; x.fillText(d.sa||'', 55, y);
+    y += 16; x.fillStyle = th.tx; x.font = '12px sans-serif';
+    subL.forEach(ln => { x.fillText(ln, 55, y); y += 16; });
   }
   return h;
 }
@@ -480,23 +557,50 @@ async function exportPng(list) {
     if(!d.img) return res(null);
     const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = d.img;
   })));
-  const totH = list.reduce((s, d) => s + ((d.sn||d.sa) ? 510 : 460), 0);
+  const tmp = document.createElement('canvas').getContext('2d');
+  const infos = list.map(d => calcCard(tmp, d));
+  const wmH = $('wm').checked ? 16 : 0;
+  const totH = infos.reduce((s, o) => s + o.h, 0) + wmH;
   const cv = document.createElement('canvas'); cv.width = 640; cv.height = totH;
   const x = cv.getContext('2d');
+  x.fillStyle = th.bg; x.fillRect(0, 0, 640, totH);
   let curY = 0;
-  list.forEach((d, i) => { curY += drawCard(x, curY, d, list.length>1 ? i : c, imgs[i]); });
+  list.forEach((d, i) => { curY += drawCard(x, curY, d, list.length>1 ? i : c, imgs[i], infos[i]); });
   if($('wm').checked) {
-    x.textAlign = 'right'; x.fillStyle = th.tx + '55'; x.font = '10px sans-serif';
-    x.fillText('mygamesandsites.github.io/the-best-jojo-stand-maker', 615, totH - 14);
+    x.textAlign = 'right'; x.fillStyle = th.tx + '66'; x.font = '10px sans-serif';
+    x.fillText('mygamesandsites.github.io/the-best-jojo-stand-maker', 624, totH - 6);
   }
   const a = document.createElement('a'); a.href = cv.toDataURL('image/png');
   const nm = list.length > 1 ? (list[0].n||'stand-all') : (list[0].n||list[0].t||'stand');
   a.download = `${nm.toLowerCase().replace(/\s+/g,'-')}.png`; a.click();
 }
 
-$('lk').onclick = () => {
-  const clean = ac.map(({img, ...rest}) => rest);
-  const raw = JSON.stringify({u:$('u').value, ac:clean, th});
+function compressImg(src, maxW, q) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const sc = Math.min(1, maxW / img.width);
+      const cv = document.createElement('canvas');
+      cv.width = Math.round(img.width * sc);
+      cv.height = Math.round(img.height * sc);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      res(cv.toDataURL('image/jpeg', q));
+    };
+    img.onerror = () => res('');
+    img.src = src;
+  });
+}
+
+$('lk').onclick = async () => {
+  const miniAc = await Promise.all(ac.map(async d => {
+    const miniImg = d.img ? await compressImg(d.img, 110, 0.5) : '';
+    return { ...d, img: miniImg };
+  }));
+  let raw = JSON.stringify({u:$('u').value, ac:miniAc, th});
+  if(raw.length > 22000) {
+    const noImg = ac.map(({img, ...rest}) => rest);
+    raw = JSON.stringify({u:$('u').value, ac:noImg, th});
+  }
   const enc = btoa(unescape(encodeURIComponent(raw)));
   const url = `${location.origin}${location.pathname}#s=${enc}`;
   navigator.clipboard.writeText(url);
@@ -515,7 +619,10 @@ $('cl').onclick = () => { localStorage.removeItem(db); history.replaceState(null
 $('ii').onchange = e => {
   const f = e.target.files[0]; if(!f) return;
   const r = new FileReader();
-  r.onload = v => { ac[c].img = v.target.result; ps(); rn(); };
+  r.onload = async v => {
+    ac[c].img = await compressImg(v.target.result, 320, 0.82);
+    ps(); rn();
+  };
   r.readAsDataURL(f);
 };
 
@@ -536,11 +643,16 @@ $('lf').onchange = e => {
   const f = e.target.files[0]; if(!f) return;
   const r = new FileReader();
   r.onload = v => {
-    const p = JSON.parse(v.target.result), list = p.ac || p.acts;
-    if(list?.length) {
-      $('u').value = p.u || p.user || '';
-      if(p.th) { th = {...defTh, ...p.th}; applyTh(); }
-      ac = list; la(0);
+    try {
+      const p = JSON.parse(v.target.result);
+      const list = p && (p.ac || p.acts);
+      if(!Array.isArray(list) || !list.length) throw 0;
+      $('u').value = String(p.u || p.user || '').slice(0,60);
+      if(p.th) { th = sanTh(p.th); applyTh(); }
+      ac = list.map((x,i) => sanAct(x,i));
+      la(0);
+    } catch(err) {
+      alert(tx[l].err);
     }
   };
   r.readAsText(f);
@@ -551,10 +663,10 @@ if(location.hash.startsWith('#s=')) {
   try {
     const raw = decodeURIComponent(escape(atob(location.hash.slice(3))));
     const p = JSON.parse(raw);
-    if(p.ac?.length) {
-      $('u').value = p.u || '';
-      if(p.th) th = {...defTh, ...p.th};
-      ac = p.ac.map(x => ({img:'', ...x}));
+    if(Array.isArray(p?.ac) && p.ac.length) {
+      $('u').value = String(p.u || '').slice(0,60);
+      if(p.th) th = sanTh(p.th);
+      ac = p.ac.map((x,i) => sanAct(x,i));
       c = 0; loadedHash = true;
     }
   } catch(e) {}
@@ -563,12 +675,12 @@ if(location.hash.startsWith('#s=')) {
 if(!loadedHash) {
   try {
     const p = JSON.parse(localStorage.getItem(db));
-    if(p) {
-      if(p.l) l = p.l;
-      if(p.u) $('u').value = p.u;
-      if(p.th) th = {...defTh, ...p.th};
-      if(p.ac?.length) ac = p.ac;
-      c = Math.min(p.c||0, ac.length-1);
+    if(p && typeof p === 'object') {
+      if(p.l === 'pt' || p.l === 'en') l = p.l;
+      if(p.u) $('u').value = String(p.u).slice(0,60);
+      if(p.th) th = sanTh(p.th);
+      if(Array.isArray(p.ac) && p.ac.length) ac = p.ac.map((x,i) => sanAct(x,i));
+      c = Math.min(Math.max(0, +p.c || 0), ac.length - 1);
     }
   } catch(e) {}
 }
