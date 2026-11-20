@@ -3,20 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stand Maker</title>
-<meta name="description" content="Crie seu próprio Stand de JoJo's Bizarre Adventure com Atos ilimitados, Sub-Stands, gráfico de status, eyecatch e exportação em PNG.">
-<meta name="keywords" content="jojo stand maker, criador de stand, jojo bizarre adventure, stand stats generator, fan stand, rpg jojo">
-<meta property="og:title" content="The Best JoJo Stand Maker">
-<meta property="og:description" content="Crie fichas completas de Stand com Atos ilimitados, Sub-Stands, gráfico hexagonal e exportação em PNG.">
-<meta property="og:url" content="https://github.io">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#ef4444">
-
+<title>The Best JoJo Stand Maker</title>
 <style>
+:root{
+  --bg:#090710;--pn:#141024;--c1:#facc15;
+  --c2:#a78bfa;--tx:#f8fafc;--bd:#3b2868
+}
 *{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
 html,body{
-  width:100%;height:100%;background:#090710;
-  color:#f8fafc;overflow:hidden
+  width:100%;height:100%;background:var(--bg);
+  color:var(--tx);overflow:hidden
 }
 #app{
   display:flex;flex-direction:column;
@@ -25,21 +21,24 @@ html,body{
 }
 .top{
   display:flex;justify-content:space-between;
-  align-items:center;margin-bottom:8px;
+  align-items:center;margin-bottom:6px;
   flex-shrink:0;gap:6px
 }
 h1{
-  color:#facc15;font-size:18px;letter-spacing:2px;
+  color:var(--c1);font-size:18px;letter-spacing:2px;
   cursor:pointer;user-select:none
 }
-.zb{
+.zb,.th-bar{
   display:flex;align-items:center;gap:4px;
-  background:#141024;padding:3px 6px;
-  border-radius:4px;border:1px solid #3b2868
+  background:var(--pn);padding:3px 6px;
+  border-radius:4px;border:1px solid var(--bd)
 }
+.th-bar{margin-bottom:6px;justify-content:space-around;flex-wrap:wrap}
+.th-it{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:bold;color:var(--c2)}
+.th-it input{width:24px;height:20px;padding:0;border:none;cursor:pointer}
 .zb span{
   font-size:11px;font-weight:bold;
-  min-width:36px;text-align:center;color:#facc15
+  min-width:36px;text-align:center;color:var(--c1)
 }
 .g{
   display:grid;grid-template-columns:1fr 1fr;
@@ -49,29 +48,26 @@ h1{
   .g{grid-template-columns:1fr;overflow-y:auto}
 }
 .bx{
-  background:#141024;border:1px solid #3b2868;
+  background:var(--pn);border:1px solid var(--bd);
   border-radius:8px;padding:12px;
   display:flex;flex-direction:column;overflow-y:auto
 }
 label{
-  display:block;font-size:10px;color:#a78bfa;
+  display:block;font-size:10px;color:var(--c2);
   margin:5px 0 2px;text-transform:uppercase;
   font-weight:bold
 }
 input,textarea,select{
-  width:100%;background:#090710;
-  border:1px solid #4c3585;color:#fff;
+  width:100%;background:var(--bg);
+  border:1px solid var(--bd);color:var(--tx);
   padding:5px 6px;border-radius:4px;font-size:12px
 }
 .r{display:flex;gap:6px;align-items:center}
-.ac{
-  display:flex;gap:4px;flex-wrap:wrap;
-  margin-bottom:4px
-}
+.ac{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
 button{
-  padding:5px 9px;border:none;border-radius:4px;
+  padding:5px 8px;border:none;border-radius:4px;
   font-weight:bold;cursor:pointer;font-size:11px;
-  color:#fff;background:#3b2868
+  color:#fff;background:var(--bd)
 }
 button.on{background:#ef4444}
 .st{
@@ -80,12 +76,12 @@ button.on{background:#ef4444}
 }
 .si{
   display:flex;justify-content:space-between;
-  align-items:center;background:#090710;
+  align-items:center;background:var(--bg);
   padding:4px 8px;border-radius:4px;
-  border-left:3px solid #facc15;
+  border-left:3px solid var(--c1);
   font-size:11px;font-weight:bold
 }
-.si select{width:46px;padding:2px;color:#facc15}
+.si select{width:46px;padding:2px;color:var(--c1)}
 .vs{
   display:flex;align-items:center;
   justify-content:space-evenly;gap:8px;
@@ -93,28 +89,25 @@ button.on{background:#ef4444}
 }
 .iw{
   width:36%;max-width:190px;aspect-ratio:3/4;
-  border:1px dashed #4c3585;border-radius:6px;
+  border:1px dashed var(--bd);border-radius:6px;
   display:flex;align-items:center;
   justify-content:center;overflow:hidden;
-  background:#090710
+  background:var(--bg)
 }
-.iw img{
-  width:100%;height:100%;
-  object-fit:cover;display:none
-}
+.iw img{width:100%;height:100%;object-fit:cover;display:none}
 .cw{
   width:56%;max-width:260px;aspect-ratio:1/1;
   display:flex;align-items:center;justify-content:center
 }
 canvas{width:100%;height:100%}
 .ab{
-  background:#090710;border-left:3px solid #ef4444;
+  background:var(--bg);border-left:3px solid #ef4444;
   padding:8px;font-size:12px;min-height:50px;
   margin-top:auto
 }
 .sb-box{
   margin-top:6px;padding-top:6px;
-  border-top:1px dashed #3b2868;display:none
+  border-top:1px dashed var(--bd);display:none
 }
 </style>
 </head>
@@ -128,16 +121,26 @@ canvas{width:100%;height:100%}
         <input type="checkbox" id="wm" checked
           style="width:auto;vertical-align:middle"> WM
       </label>
-      <button id="lg" style="background:#1e1b4b;
-        border:1px solid #facc15;color:#facc15">PT</button>
+      <button id="thBtn" style="border:1px solid var(--c1);
+        color:var(--c1)">🎨</button>
+      <button id="lg" style="border:1px solid var(--c1);
+        color:var(--c1)">PT</button>
       <div class="zb">
         <button id="zo">-</button>
         <span id="zv">100%</span>
         <button id="zi">+</button>
-        <button id="zr" style="background:#1e1b4b;
-          color:#a78bfa">100%</button>
+        <button id="zr" style="color:var(--c2)">100%</button>
       </div>
     </div>
+  </div>
+  <div class="th-bar" id="thBar" style="display:none">
+    <div class="th-it"><span id="ltBg">Fundo</span><input type="color" id="thBg"></div>
+    <div class="th-it"><span id="ltPn">Painel</span><input type="color" id="thPn"></div>
+    <div class="th-it"><span id="ltC1">Destaque</span><input type="color" id="thC1"></div>
+    <div class="th-it"><span id="ltC2">Secundária</span><input type="color" id="thC2"></div>
+    <div class="th-it"><span id="ltTx">Texto</span><input type="color" id="thTx"></div>
+    <div class="th-it"><span id="ltBd">Borda</span><input type="color" id="thBd"></div>
+    <button id="thRst" style="background:#991b1b;font-size:10px;padding:3px 6px">Reset</button>
   </div>
   <div class="g">
     <div class="bx">
@@ -166,21 +169,15 @@ canvas{width:100%;height:100%}
         </div>
       </div>
       <div class="r">
-        <div style="flex:1">
-          <label id="ls">Usuário</label><input id="u">
-        </div>
-        <div style="flex:1">
-          <label id="lc">Grito</label><input id="c">
-        </div>
+        <div style="flex:1"><label id="ls">Usuário</label><input id="u"></div>
+        <div style="flex:1"><label id="lc">Grito</label><input id="c"></div>
       </div>
       <div class="r">
         <div style="flex:1">
           <label id="li">Imagem</label>
           <input type="file" id="ii" accept="image/*">
         </div>
-        <div style="flex:1">
-          <label id="lsub">Sub-Stand</label><input id="sn">
-        </div>
+        <div style="flex:1"><label id="lsub">Sub-Stand</label><input id="sn"></div>
       </div>
       <label id="lb">Habilidade</label>
       <textarea id="a" rows="2"></textarea>
@@ -188,9 +185,10 @@ canvas{width:100%;height:100%}
       <input id="sa">
       <label>Stand Stats</label>
       <div class="st" id="sb"></div>
-      <div class="r" style="margin-top:auto;padding-top:8px">
+      <div class="r" style="margin-top:auto;padding-top:8px;flex-wrap:wrap">
         <button id="rn" style="flex:1;background:#7e22ce">Sortear</button>
         <button id="pn" style="flex:1;background:#d97706">PNG</button>
+        <button id="pna" style="flex:1;background:#b45309">PNG Todos</button>
         <button id="sv" style="flex:1;background:#16a34a">Salvar</button>
         <button id="ld" style="flex:1;background:#2563eb">Carregar</button>
         <input type="file" id="lf" accept=".json" style="display:none">
@@ -199,25 +197,23 @@ canvas{width:100%;height:100%}
     <div class="bx">
       <div style="text-align:center">
         <small id="dt" style="font-weight:bold"></small>
-        <h2 id="dn" style="color:#facc15;font-size:20px">「」</h2>
-        <small id="du" style="color:#cbd5e1"></small>
+        <h2 id="dn" style="color:var(--c1);font-size:20px">「」</h2>
+        <small id="du" style="opacity:0.8"></small>
       </div>
       <div class="vs">
         <div class="iw" id="ib">
           <img id="pi">
-          <span id="ni" style="font-size:10px;color:#64748b">
-            Sem imagem
-          </span>
+          <span id="ni" style="font-size:10px;opacity:0.6">Sem imagem</span>
         </div>
         <div class="cw">
           <canvas id="cv" width="240" height="240"></canvas>
         </div>
       </div>
       <div class="ab" id="ax">
-        <b id="dc" style="color:#facc15"></b>
+        <b id="dc" style="color:var(--c1)"></b>
         <p id="da" style="margin-top:3px"></p>
         <div class="sb-box" id="dsBox">
-          <b id="dsn" style="color:#a78bfa;font-size:11px"></b>
+          <b id="dsn" style="color:var(--c2);font-size:11px"></b>
           <p id="dsa" style="font-size:11px;margin-top:2px"></p>
         </div>
       </div>
@@ -229,42 +225,69 @@ const $ = i => document.getElementById(i);
 const tx = {
   pt: {
     a:'Atos', ad:'+ Ato', cl:'Limpar', t:'Nome do Ato',
-    n:'Nome do Stand', au:'Aura', u:'Usuário',
-    up:'Usuário: ', i:'Imagem', ni:'Sem imagem',
-    c:'Grito', b:'Habilidade', sub:'Sub-Stand',
-    sb:'Habilidade Sub-Stand', rn:'Sortear',
-    sv:'Salvar', ld:'Carregar',
-    k:['PODER','VELOCIDADE','ALCANCE',
-       'PERSISTÊNCIA','PRECISÃO','POTENCIAL'],
+    n:'Nome do Stand', au:'Aura', u:'Usuário', up:'Usuário: ',
+    i:'Imagem', ni:'Sem imagem', c:'Grito', b:'Habilidade',
+    sub:'Sub-Stand', sb:'Habilidade Sub-Stand',
+    rn:'Sortear', pna:'PNG Todos', sv:'Salvar', ld:'Carregar',
+    bg:'Fundo', pn:'Painel', c1:'Destaque', c2:'Secundária',
+    tx:'Texto', bd:'Borda',
+    k:['PODER','VELOCIDADE','ALCANCE','PERSISTÊNCIA','PRECISÃO','POTENCIAL'],
     s:['POD','VEL','ALC','PER','PRE','POT']
   },
   en: {
     a:'Acts', ad:'+ Act', cl:'Reset', t:'Act Name',
-    n:'Stand Name', au:'Aura', u:'Stand User',
-    up:'User: ', i:'Image', ni:'No image',
-    c:'Battle Cry', b:'Ability', sub:'Sub-Stand',
-    sb:'Sub-Stand Ability', rn:'Random',
-    sv:'Save', ld:'Load',
-    k:['POWER','SPEED','RANGE',
-       'STAMINA','PRECISION','POTENTIAL'],
+    n:'Stand Name', au:'Aura', u:'Stand User', up:'User: ',
+    i:'Image', ni:'No image', c:'Battle Cry', b:'Ability',
+    sub:'Sub-Stand', sb:'Sub-Stand Ability',
+    rn:'Random', pna:'PNG All', sv:'Save', ld:'Load',
+    bg:'Bg', pn:'Panel', c1:'Accent', c2:'Secondary',
+    tx:'Text', bd:'Border',
+    k:['POWER','SPEED','RANGE','STAMINA','PRECISION','POTENTIAL'],
     s:['PWR','SPD','RNG','STA','PRC','POT']
   }
 };
+const defTh = {
+  bg:'#090710', pn:'#141024', c1:'#facc15',
+  c2:'#a78bfa', tx:'#f8fafc', bd:'#3b2868'
+};
 const mp = {'∞':6.6,S:6,A:5,B:4,C:3,D:2,E:1,'?':0};
 const rk = ['?','∞','S','A','B','C','D','E'];
-const db = 'sm_v3';
+const db = 'sm_v4';
 const mk = i => ({
   t:`ACT ${i}`, n:'', c:'', a:'', sn:'', sa:'',
   au:'#ef4444', img:'', s:['?','?','?','?','?','?']
 });
 let l = 'pt', ac = [mk(1)], c = 0, z = 1, taps = 0;
+let th = {...defTh};
+
+function applyTh() {
+  const r = document.documentElement.style;
+  r.setProperty('--bg', th.bg); r.setProperty('--pn', th.pn);
+  r.setProperty('--c1', th.c1); r.setProperty('--c2', th.c2);
+  r.setProperty('--tx', th.tx); r.setProperty('--bd', th.bd);
+  $('thBg').value = th.bg; $('thPn').value = th.pn;
+  $('thC1').value = th.c1; $('thC2').value = th.c2;
+  $('thTx').value = th.tx; $('thBd').value = th.bd;
+  rn();
+}
+
+$('thBtn').onclick = () => {
+  const b = $('thBar');
+  b.style.display = b.style.display === 'none' ? 'flex' : 'none';
+};
+['Bg','Pn','C1','C2','Tx','Bd'].forEach(k => {
+  $('th'+k).oninput = e => {
+    th[k.toLowerCase()] = e.target.value;
+    applyTh(); ps();
+  };
+});
+$('thRst').onclick = () => { th = {...defTh}; applyTh(); ps(); };
 
 $('logo').onclick = () => {
   taps++;
   if(taps >= 3) {
     const w = $('wmWrap');
-    w.style.display = w.style.display === 'none'
-      ? 'inline' : 'none';
+    w.style.display = w.style.display === 'none' ? 'inline' : 'none';
     taps = 0;
   }
 };
@@ -284,22 +307,18 @@ $('zr').onclick = () => zm(1);
 function ui() {
   const L = tx[l];
   $('lg').textContent = l.toUpperCase();
-  $('la').textContent = L.a;
-  $('ad').textContent = L.ad;
-  $('cl').textContent = L.cl;
-  $('lt').textContent = L.t;
-  $('ln').textContent = L.n;
-  $('lu').textContent = L.au;
-  $('ls').textContent = L.u;
-  $('li').textContent = L.i;
-  $('ni').textContent = L.ni;
-  $('lc').textContent = L.c;
-  $('lb').textContent = L.b;
-  $('lsub').textContent = L.sub;
-  $('lsb').textContent = L.sb;
-  $('rn').textContent = L.rn;
-  $('sv').textContent = L.sv;
-  $('ld').textContent = L.ld;
+  $('la').textContent = L.a; $('ad').textContent = L.ad;
+  $('cl').textContent = L.cl; $('lt').textContent = L.t;
+  $('ln').textContent = L.n; $('lu').textContent = L.au;
+  $('ls').textContent = L.u; $('li').textContent = L.i;
+  $('ni').textContent = L.ni; $('lc').textContent = L.c;
+  $('lb').textContent = L.b; $('lsub').textContent = L.sub;
+  $('lsb').textContent = L.sb; $('rn').textContent = L.rn;
+  $('pna').textContent = L.pna; $('sv').textContent = L.sv;
+  $('ld').textContent = L.ld; $('ltBg').textContent = L.bg;
+  $('ltPn').textContent = L.pn; $('ltC1').textContent = L.c1;
+  $('ltC2').textContent = L.c2; $('ltTx').textContent = L.tx;
+  $('ltBd').textContent = L.bd;
   const opts = rk.map(r => `<option>${r}</option>`).join('');
   $('sb').innerHTML = L.k.map((k,i) =>
     `<div class="si"><span>${k}</span>` +
@@ -312,7 +331,7 @@ function ui() {
 
 function ps() {
   try {
-    const data = JSON.stringify({l, u:$('u').value, ac, c});
+    const data = JSON.stringify({l, u:$('u').value, ac, c, th});
     localStorage.setItem(db, data);
   } catch(e) {}
 }
@@ -323,298 +342,192 @@ function la(i) {
   $('ab').innerHTML = ac.map((x,j) => {
     const nm = (x.t||`ACT ${j+1}`).toUpperCase();
     const cls = j===c ? 'on' : '';
-    return `<button class="${cls}" ` +
-      `onclick="la(${j})">${nm}</button>`;
+    return `<button class="${cls}" onclick="la(${j})">${nm}</button>`;
   }).join('');
   const d = ac[c];
-  $('t').value = d.t;
-  $('n').value = d.n;
-  $('c').value = d.c;
-  $('a').value = d.a;
-  $('sn').value = d.sn || '';
-  $('sa').value = d.sa || '';
-  $('au').value = d.au;
-  $('ii').value = '';
+  $('t').value = d.t; $('n').value = d.n;
+  $('c').value = d.c; $('a').value = d.a;
+  $('sn').value = d.sn || ''; $('sa').value = d.sa || '';
+  $('au').value = d.au; $('ii').value = '';
   d.s.forEach((v,j) => $('s'+j).value = v);
-  ps();
-  rn();
+  ps(); rn();
 }
 
 function sa() {
   const d = ac[c];
-  d.t = $('t').value;
-  d.n = $('n').value;
-  d.c = $('c').value;
-  d.a = $('a').value;
-  d.sn = $('sn').value;
-  d.sa = $('sa').value;
+  d.t = $('t').value; d.n = $('n').value;
+  d.c = $('c').value; d.a = $('a').value;
+  d.sn = $('sn').value; d.sa = $('sa').value;
   d.au = $('au').value;
   d.s = tx[l].k.map((_,i) => $('s'+i).value);
-  const nm = (d.t||`ACT ${c+1}`).toUpperCase();
-  $('ab').children[c].textContent = nm;
-  ps();
-  rn();
+  $('ab').children[c].textContent = (d.t||`ACT ${c+1}`).toUpperCase();
+  ps(); rn();
 }
-  function dr(x, cx, cy, mr, d) {
+function dr(x, cx, cy, mr, d) {
   x.save();
   x.beginPath();
   x.arc(cx, cy, mr + 14, 0, Math.PI * 2);
-  x.strokeStyle = 'rgba(250, 204, 21, 0.35)';
-  x.lineWidth = 2;
-  x.stroke();
-
+  x.strokeStyle = th.c1 + '66';
+  x.lineWidth = 2; x.stroke();
   x.beginPath();
   x.arc(cx, cy, mr + 10, 0, Math.PI * 2);
   x.setLineDash([4, 4]);
   x.strokeStyle = d.au;
-  x.lineWidth = 1.5;
-  x.stroke();
+  x.lineWidth = 1.5; x.stroke();
   x.setLineDash([]);
-
   for(let i=0; i<6; i++) {
     let a = i*Math.PI/3 - Math.PI/2;
-    x.beginPath();
-    x.moveTo(cx, cy);
+    x.beginPath(); x.moveTo(cx, cy);
     x.lineTo(cx + mr*Math.cos(a), cy + mr*Math.sin(a));
-    x.strokeStyle = 'rgba(255,255,255,0.12)';
-    x.stroke();
+    x.strokeStyle = th.tx + '22'; x.stroke();
   }
   x.restore();
 
   for(let v=1; v<=6; v++) {
     x.beginPath();
     for(let i=0; i<6; i++) {
-      let a = i*Math.PI/3 - Math.PI/2;
-      let r = (mr/6)*v;
-      let px = cx + r*Math.cos(a);
-      let py = cy + r*Math.sin(a);
+      let a = i*Math.PI/3 - Math.PI/2, r = (mr/6)*v;
+      let px = cx + r*Math.cos(a), py = cy + r*Math.sin(a);
       i ? x.lineTo(px, py) : x.moveTo(px, py);
     }
     x.closePath();
-    x.strokeStyle = v==6
-      ? '#facc15' : 'rgba(255,255,255,0.2)';
-    x.lineWidth = v==6 ? 1.5 : 1;
-    x.stroke();
+    x.strokeStyle = v==6 ? th.c1 : th.tx + '33';
+    x.lineWidth = v==6 ? 1.5 : 1; x.stroke();
   }
   x.beginPath();
   d.s.forEach((k,i) => {
-    let a = i*Math.PI/3 - Math.PI/2;
-    let r = (mr/6)*(mp[k]||0);
-    let px = cx + r*Math.cos(a);
-    let py = cy + r*Math.sin(a);
+    let a = i*Math.PI/3 - Math.PI/2, r = (mr/6)*(mp[k]||0);
+    let px = cx + r*Math.cos(a), py = cy + r*Math.sin(a);
     i ? x.lineTo(px, py) : x.moveTo(px, py);
   });
   x.closePath();
-  x.fillStyle = d.au + '66';
-  x.fill();
-  x.strokeStyle = d.au;
-  x.lineWidth = 2.5;
-  x.stroke();
+  x.fillStyle = d.au + '66'; x.fill();
+  x.strokeStyle = d.au; x.lineWidth = 2.5; x.stroke();
   x.textAlign = 'center';
   tx[l].s.forEach((k,i) => {
     let a = i*Math.PI/3 - Math.PI/2;
-    let lx = cx + (mr+25)*Math.cos(a);
-    let ly = cy + (mr+25)*Math.sin(a);
-    x.fillStyle = '#cbd5e1';
-    x.font = 'bold 9px sans-serif';
+    let lx = cx + (mr+25)*Math.cos(a), ly = cy + (mr+25)*Math.sin(a);
+    x.fillStyle = th.tx; x.font = 'bold 9px sans-serif';
     x.fillText(k, lx, ly-5);
     const val = d.s[i];
-    x.fillStyle = (val=='S'||val=='∞')
-      ? '#ef4444' : '#facc15';
+    x.fillStyle = (val=='S'||val=='∞') ? '#ef4444' : th.c1;
     x.font = '900 13px sans-serif';
     x.fillText(val, lx, ly+9);
   });
 }
 
 function rn() {
-  const L = tx[l];
-  const d = ac[c];
-  const tg = (d.t||`ACT ${c+1}`).toUpperCase();
-  $('dt').textContent = tg;
-  $('dt').style.color = d.au;
-  $('dn').textContent = d.n
-    ? `「${d.n.toUpperCase()}」` : `「${tg}」`;
-  $('du').textContent = $('u').value
-    ? `${L.up}${$('u').value}` : '';
-  $('dc').textContent = d.c.toUpperCase();
-  $('da').textContent = d.a;
+  const L = tx[l], d = ac[c], tg = (d.t||`ACT ${c+1}`).toUpperCase();
+  $('dt').textContent = tg; $('dt').style.color = d.au;
+  $('dn').textContent = d.n ? `「${d.n.toUpperCase()}」` : `「${tg}」`;
+  $('du').textContent = $('u').value ? `${L.up}${$('u').value}` : '';
+  $('dc').textContent = d.c.toUpperCase(); $('da').textContent = d.a;
   $('ax').style.borderColor = d.au;
-
   const hasSub = !!(d.sn || d.sa);
   $('dsBox').style.display = hasSub ? 'block' : 'none';
-  $('dsn').textContent = d.sn
-    ? `SUB-STAND: 「${d.sn.toUpperCase()}」` : '';
+  $('dsn').textContent = d.sn ? `SUB-STAND: 「${d.sn.toUpperCase()}」` : '';
   $('dsa').textContent = d.sa || '';
-
   $('pi').style.display = d.img ? 'block' : 'none';
   $('ni').style.display = d.img ? 'none' : 'block';
   if(d.img) $('pi').src = d.img;
-  $('ib').style.borderColor = d.img ? d.au : '#4c3585';
-  $('ib').style.boxShadow = d.img
-    ? `0 0 15px ${d.au}66` : 'none';
+  $('ib').style.borderColor = d.img ? d.au : th.bd;
+  $('ib').style.boxShadow = d.img ? `0 0 15px ${d.au}66` : 'none';
   const x = $('cv').getContext('2d');
   x.clearRect(0,0,240,240);
   dr(x, 120, 120, 74, d);
 }
 
-$('pn').onclick = () => {
-  const d = ac[c];
-  const L = tx[l];
-  const tg = (d.t||`ACT ${c+1}`).toUpperCase();
-  const hasSub = !!(d.sn || d.sa);
-  const cv = document.createElement('canvas');
-  cv.width = 640;
-  cv.height = hasSub ? 520 : 470;
-  const x = cv.getContext('2d');
-  x.fillStyle = '#090710';
-  x.fillRect(0,0,640,cv.height);
-  x.strokeStyle = d.au;
-  x.lineWidth = 4;
-  x.strokeRect(8,8,624,cv.height-16);
+function drawCard(x, oy, d, idx, im) {
+  const L = tx[l], tg = (d.t||`ACT ${idx+1}`).toUpperCase();
+  const hasSub = !!(d.sn || d.sa), h = hasSub ? 510 : 460;
+  x.fillStyle = th.bg; x.fillRect(0, oy, 640, h);
+  x.strokeStyle = d.au; x.lineWidth = 4; x.strokeRect(8, oy+8, 624, h-16);
   x.textAlign = 'center';
-  x.fillStyle = d.au;
-  x.font = 'bold 14px sans-serif';
-  x.fillText(tg, 320, 38);
-  x.fillStyle = '#facc15';
-  x.font = '900 26px sans-serif';
-  x.fillText(d.n ? `「${d.n.toUpperCase()}」` : `「${tg}」`, 320, 68);
-  x.fillStyle = '#cbd5e1';
-  x.font = '14px sans-serif';
-  if($('u').value) x.fillText(`${L.up}${$('u').value}`, 320, 90);
-  x.strokeStyle = '#3b2868';
-  x.lineWidth = 2;
-  x.strokeRect(40,115,180,220);
-  if(d.img) {
-    x.drawImage($('pi'), 40, 115, 180, 220);
-  } else {
-    x.fillStyle = '#64748b';
-    x.font = '12px sans-serif';
-    x.fillText(L.ni, 130, 225);
-  }
-  dr(x, 440, 225, 76, d);
-
-  const boxH = hasSub ? 125 : 80;
-  x.fillStyle = '#141024';
-  x.fillRect(40,355,560,boxH);
-  x.fillStyle = d.au;
-  x.fillRect(40,355,5,boxH);
+  x.fillStyle = d.au; x.font = 'bold 14px sans-serif'; x.fillText(tg, 320, oy+38);
+  x.fillStyle = th.c1; x.font = '900 26px sans-serif';
+  x.fillText(d.n ? `「${d.n.toUpperCase()}」` : `「${tg}」`, 320, oy+68);
+  x.fillStyle = th.tx; x.font = '14px sans-serif';
+  if($('u').value) x.fillText(`${L.up}${$('u').value}`, 320, oy+90);
+  x.strokeStyle = th.bd; x.lineWidth = 2; x.strokeRect(40, oy+115, 180, 220);
+  if(im) x.drawImage(im, 40, oy+115, 180, 220);
+  else { x.fillStyle = th.tx+'88'; x.font = '12px sans-serif'; x.fillText(L.ni, 130, oy+225); }
+  dr(x, 440, oy+225, 76, d);
+  const bh = hasSub ? 125 : 80;
+  x.fillStyle = th.pn; x.fillRect(40, oy+355, 560, bh);
+  x.fillStyle = d.au; x.fillRect(40, oy+355, 5, bh);
   x.textAlign = 'left';
-  x.fillStyle = '#facc15';
-  x.font = 'bold 14px sans-serif';
-  x.fillText(d.c.toUpperCase(), 55, 378);
-  x.fillStyle = '#f8fafc';
-  x.font = '13px sans-serif';
-  let ln = '', y = 398;
+  x.fillStyle = th.c1; x.font = 'bold 14px sans-serif'; x.fillText(d.c.toUpperCase(), 55, oy+378);
+  x.fillStyle = th.tx; x.font = '13px sans-serif';
+  let ln = '', y = oy+398;
   d.a.split(' ').forEach(w => {
-    if(x.measureText(ln+w).width > 530) {
-      x.fillText(ln, 55, y);
-      ln = w + ' ';
-      y += 17;
-    } else {
-      ln += w + ' ';
-    }
+    if(x.measureText(ln+w).width > 530) { x.fillText(ln, 55, y); ln = w+' '; y += 17; }
+    else ln += w+' ';
   });
   x.fillText(ln, 55, y);
-
   if(hasSub) {
-    y += 22;
-    x.fillStyle = '#a78bfa';
-    x.font = 'bold 12px sans-serif';
-    const st = d.sn
-      ? `SUB-STAND: 「${d.sn.toUpperCase()}」` : 'SUB-STAND';
-    x.fillText(st, 55, y);
-    y += 16;
-    x.fillStyle = '#cbd5e1';
-    x.font = '12px sans-serif';
-    x.fillText(d.sa || '', 55, y);
+    y += 22; x.fillStyle = th.c2; x.font = 'bold 12px sans-serif';
+    x.fillText(d.sn ? `SUB-STAND: 「${d.sn.toUpperCase()}」` : 'SUB-STAND', 55, y);
+    y += 16; x.fillStyle = th.tx; x.font = '12px sans-serif'; x.fillText(d.sa||'', 55, y);
   }
+  return h;
+}
 
+async function exportPng(list) {
+  const imgs = await Promise.all(list.map(d => new Promise(res => {
+    if(!d.img) return res(null);
+    const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = d.img;
+  })));
+  const totH = list.reduce((s, d) => s + ((d.sn||d.sa) ? 510 : 460), 0);
+  const cv = document.createElement('canvas'); cv.width = 640; cv.height = totH;
+  const x = cv.getContext('2d');
+  let curY = 0;
+  list.forEach((d, i) => { curY += drawCard(x, curY, d, list.length>1 ? i : c, imgs[i]); });
   if($('wm').checked) {
-    x.textAlign = 'right';
-    x.fillStyle = 'rgba(255,255,255,0.28)';
-    x.font = '10px sans-serif';
-    x.fillText(
-      'mygamesandsites.github.io/the-best-jojo-stand-maker',
-      615, cv.height - 16
-    );
+    x.textAlign = 'right'; x.fillStyle = th.tx + '55'; x.font = '10px sans-serif';
+    x.fillText('mygamesandsites.github.io/the-best-jojo-stand-maker', 615, totH - 14);
   }
+  const a = document.createElement('a'); a.href = cv.toDataURL('image/png');
+  const nm = list.length > 1 ? (list[0].n||'stand-all') : (list[0].n||list[0].t||'stand');
+  a.download = `${nm.toLowerCase().replace(/\s+/g,'-')}.png`; a.click();
+}
 
-  const a = document.createElement('a');
-  a.href = cv.toDataURL('image/png');
-  const fn = (d.n||tg).toLowerCase().replace(/\s+/g,'-');
-  a.download = `${fn}.png`;
-  a.click();
-};
-
-$('lg').onclick = () => {
-  l = l==='pt' ? 'en' : 'pt';
-  ps();
-  ui();
-};
-$('ad').onclick = () => {
-  ac.push(mk(ac.length+1));
-  la(ac.length-1);
-};
-$('dl').onclick = () => {
-  if(ac.length>1) {
-    ac.splice(c,1);
-    la(Math.max(0,c-1));
-  }
-};
-$('cl').onclick = () => {
-  localStorage.removeItem(db);
-  $('u').value = '';
-  ac = [mk(1)];
-  la(0);
-};
-['t','n','u','c','a','sn','sa','au']
-  .forEach(i => $(i).oninput = sa);
+$('pn').onclick = () => exportPng([ac[c]]);
+$('pna').onclick = () => exportPng(ac);
+$('lg').onclick = () => { l = l==='pt'?'en':'pt'; ps(); ui(); };
+$('ad').onclick = () => { ac.push(mk(ac.length+1)); la(ac.length-1); };
+$('dl').onclick = () => { if(ac.length>1){ ac.splice(c,1); la(Math.max(0,c-1)); } };
+$('cl').onclick = () => { localStorage.removeItem(db); $('u').value=''; ac=[mk(1)]; la(0); };
+['t','n','u','c','a','sn','sa','au'].forEach(i => $(i).oninput = sa);
 
 $('ii').onchange = e => {
-  const f = e.target.files.item(0);
-  if(!f) return;
+  const f = e.target.files.item(0); if(!f) return;
   const r = new FileReader();
-  r.onload = v => {
-    ac[c].img = v.target.result;
-    ps();
-    rn();
-  };
+  r.onload = v => { ac[c].img = v.target.result; ps(); rn(); };
   r.readAsDataURL(f);
 };
 
 $('rn').onclick = () => {
   const p = ['∞','S','A','B','C','D','E'];
-  tx[l].k.forEach((_,i) => {
-    $('s'+i).value = p[Math.floor(Math.random()*p.length)];
-  });
+  tx[l].k.forEach((_,i) => $('s'+i).value = p[Math.floor(Math.random()*p.length)]);
   sa();
 };
 
 $('sv').onclick = () => {
-  const blob = new Blob(
-    [JSON.stringify({u:$('u').value, ac})],
-    {type:'application/json'}
-  );
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  const base = ac.at(0)?.n || 'stand';
-  const fn = base.toLowerCase().replace(/\s+/g,'-');
-  a.download = `${fn}.json`;
-  a.click();
+  const blob = new Blob([JSON.stringify({u:$('u').value, ac, th})], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `${(ac[0]?.n||'stand').toLowerCase().replace(/\s+/g,'-')}.json`; a.click();
 };
 
 $('ld').onclick = () => $('lf').click();
 $('lf').onchange = e => {
-  const f = e.target.files.item(0);
-  if(!f) return;
+  const f = e.target.files.item(0); if(!f) return;
   const r = new FileReader();
   r.onload = v => {
-    const p = JSON.parse(v.target.result);
-    const list = p.ac || p.acts;
+    const p = JSON.parse(v.target.result), list = p.ac || p.acts;
     if(list?.length) {
       $('u').value = p.u || p.user || '';
-      ac = list;
-      la(0);
+      if(p.th) { th = {...defTh, ...p.th}; applyTh(); }
+      ac = list; la(0);
     }
   };
   r.readAsText(f);
@@ -625,12 +538,12 @@ try {
   if(p) {
     if(p.l) l = p.l;
     if(p.u) $('u').value = p.u;
+    if(p.th) th = {...defTh, ...p.th};
     if(p.ac?.length) ac = p.ac;
     c = Math.min(p.c||0, ac.length-1);
   }
 } catch(e) {}
-ui();
-la(c);
+applyTh(); ui(); la(c);
 </script>
 </body>
 </html>
