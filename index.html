@@ -189,6 +189,7 @@ canvas{width:100%;height:100%}
         <button id="rn" style="flex:1;background:#7e22ce">Sortear</button>
         <button id="pn" style="flex:1;background:#d97706">PNG</button>
         <button id="pna" style="flex:1;background:#b45309">PNG Todos</button>
+        <button id="lk" style="flex:1;background:#0d9488">Link</button>
         <button id="sv" style="flex:1;background:#16a34a">Salvar</button>
         <button id="ld" style="flex:1;background:#2563eb">Carregar</button>
         <input type="file" id="lf" accept=".json" style="display:none">
@@ -228,7 +229,8 @@ const tx = {
     n:'Nome do Stand', au:'Aura', u:'Usuário', up:'Usuário: ',
     i:'Imagem', ni:'Sem imagem', c:'Grito', b:'Habilidade',
     sub:'Sub-Stand', sb:'Habilidade Sub-Stand',
-    rn:'Sortear', pna:'PNG Todos', sv:'Salvar', ld:'Carregar',
+    rn:'Sortear', pna:'PNG Todos', lk:'Link', lkc:'Copiado!',
+    sv:'Salvar', ld:'Carregar',
     bg:'Fundo', pn:'Painel', c1:'Destaque', c2:'Secundária',
     tx:'Texto', bd:'Borda',
     k:['PODER','VELOCIDADE','ALCANCE','PERSISTÊNCIA','PRECISÃO','POTENCIAL'],
@@ -239,7 +241,8 @@ const tx = {
     n:'Stand Name', au:'Aura', u:'Stand User', up:'User: ',
     i:'Image', ni:'No image', c:'Battle Cry', b:'Ability',
     sub:'Sub-Stand', sb:'Sub-Stand Ability',
-    rn:'Random', pna:'PNG All', sv:'Save', ld:'Load',
+    rn:'Random', pna:'PNG All', lk:'Link', lkc:'Copied!',
+    sv:'Save', ld:'Load',
     bg:'Bg', pn:'Panel', c1:'Accent', c2:'Secondary',
     tx:'Text', bd:'Border',
     k:['POWER','SPEED','RANGE','STAMINA','PRECISION','POTENTIAL'],
@@ -314,11 +317,11 @@ function ui() {
   $('ni').textContent = L.ni; $('lc').textContent = L.c;
   $('lb').textContent = L.b; $('lsub').textContent = L.sub;
   $('lsb').textContent = L.sb; $('rn').textContent = L.rn;
-  $('pna').textContent = L.pna; $('sv').textContent = L.sv;
-  $('ld').textContent = L.ld; $('ltBg').textContent = L.bg;
-  $('ltPn').textContent = L.pn; $('ltC1').textContent = L.c1;
-  $('ltC2').textContent = L.c2; $('ltTx').textContent = L.tx;
-  $('ltBd').textContent = L.bd;
+  $('pna').textContent = L.pna; $('lk').textContent = L.lk;
+  $('sv').textContent = L.sv; $('ld').textContent = L.ld;
+  $('ltBg').textContent = L.bg; $('ltPn').textContent = L.pn;
+  $('ltC1').textContent = L.c1; $('ltC2').textContent = L.c2;
+  $('ltTx').textContent = L.tx; $('ltBd').textContent = L.bd;
   const opts = rk.map(r => `<option>${r}</option>`).join('');
   $('sb').innerHTML = L.k.map((k,i) =>
     `<div class="si"><span>${k}</span>` +
@@ -371,7 +374,7 @@ function dr(x, cx, cy, mr, d) {
   x.lineWidth = 2; x.stroke();
   x.beginPath();
   x.arc(cx, cy, mr + 10, 0, Math.PI * 2);
-  x.setLineDash([4, 4]);
+  x.setLineDash([5, 4]);
   x.strokeStyle = d.au;
   x.lineWidth = 1.5; x.stroke();
   x.setLineDash([]);
@@ -491,16 +494,26 @@ async function exportPng(list) {
   a.download = `${nm.toLowerCase().replace(/\s+/g,'-')}.png`; a.click();
 }
 
+$('lk').onclick = () => {
+  const clean = ac.map(({img, ...rest}) => rest);
+  const raw = JSON.stringify({u:$('u').value, ac:clean, th});
+  const enc = btoa(unescape(encodeURIComponent(raw)));
+  const url = `${location.origin}${location.pathname}#s=${enc}`;
+  navigator.clipboard.writeText(url);
+  $('lk').textContent = tx[l].lkc;
+  setTimeout(() => $('lk').textContent = tx[l].lk, 1800);
+};
+
 $('pn').onclick = () => exportPng([ac[c]]);
 $('pna').onclick = () => exportPng(ac);
 $('lg').onclick = () => { l = l==='pt'?'en':'pt'; ps(); ui(); };
 $('ad').onclick = () => { ac.push(mk(ac.length+1)); la(ac.length-1); };
 $('dl').onclick = () => { if(ac.length>1){ ac.splice(c,1); la(Math.max(0,c-1)); } };
-$('cl').onclick = () => { localStorage.removeItem(db); $('u').value=''; ac=[mk(1)]; la(0); };
+$('cl').onclick = () => { localStorage.removeItem(db); history.replaceState(null,'',' '); $('u').value=''; ac=[mk(1)]; la(0); };
 ['t','n','u','c','a','sn','sa','au'].forEach(i => $(i).oninput = sa);
 
 $('ii').onchange = e => {
-  const f = e.target.files.item(0); if(!f) return;
+  const f = e.target.files[0]; if(!f) return;
   const r = new FileReader();
   r.onload = v => { ac[c].img = v.target.result; ps(); rn(); };
   r.readAsDataURL(f);
@@ -520,7 +533,7 @@ $('sv').onclick = () => {
 
 $('ld').onclick = () => $('lf').click();
 $('lf').onchange = e => {
-  const f = e.target.files.item(0); if(!f) return;
+  const f = e.target.files[0]; if(!f) return;
   const r = new FileReader();
   r.onload = v => {
     const p = JSON.parse(v.target.result), list = p.ac || p.acts;
@@ -533,16 +546,32 @@ $('lf').onchange = e => {
   r.readAsText(f);
 };
 
-try {
-  const p = JSON.parse(localStorage.getItem(db));
-  if(p) {
-    if(p.l) l = p.l;
-    if(p.u) $('u').value = p.u;
-    if(p.th) th = {...defTh, ...p.th};
-    if(p.ac?.length) ac = p.ac;
-    c = Math.min(p.c||0, ac.length-1);
-  }
-} catch(e) {}
+let loadedHash = false;
+if(location.hash.startsWith('#s=')) {
+  try {
+    const raw = decodeURIComponent(escape(atob(location.hash.slice(3))));
+    const p = JSON.parse(raw);
+    if(p.ac?.length) {
+      $('u').value = p.u || '';
+      if(p.th) th = {...defTh, ...p.th};
+      ac = p.ac.map(x => ({img:'', ...x}));
+      c = 0; loadedHash = true;
+    }
+  } catch(e) {}
+}
+
+if(!loadedHash) {
+  try {
+    const p = JSON.parse(localStorage.getItem(db));
+    if(p) {
+      if(p.l) l = p.l;
+      if(p.u) $('u').value = p.u;
+      if(p.th) th = {...defTh, ...p.th};
+      if(p.ac?.length) ac = p.ac;
+      c = Math.min(p.c||0, ac.length-1);
+    }
+  } catch(e) {}
+}
 applyTh(); ui(); la(c);
 </script>
 </body>
